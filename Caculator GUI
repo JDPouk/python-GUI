@@ -1,0 +1,52 @@
+import wx
+import wx.lib.inspection
+
+class Example(wx.Frame):
+    def __init__(self, parent, title):
+        super(Example, self).__init__(parent, title=title,
+                                      size=(300,500))
+
+        self.InitUI()
+        self.Centre()
+        self.Show()
+
+    def InitUI(self):
+        menubar = wx.MenuBar()
+        self.SetMenuBar(menubar)
+
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        self.display = wx.TextCtrl(self, pos=(3, 3), size=(250, 104))
+        vbox.Add(self.display, flag=wx.EXPAND |wx.TOP|wx.LEFT|wx.RIGHT, border=20)
+        gs = wx.GridSizer(5, 4, 0, 0)
+
+        gs.AddMany([(wx.Button(self, label='C'), 0, wx.EXPAND),
+                    (wx.Button(self, label='+ -'), 0, wx.EXPAND),
+                    (wx.Button(self, label='%'), 0, wx.EXPAND),
+                    (wx.Button(self, label='/'), 0, wx.EXPAND),
+                    (wx.Button(self, label='7'), 0, wx.EXPAND),
+                    (wx.Button(self, label='8'), 0, wx.EXPAND),
+                    (wx.Button(self, label='9'), 0, wx.EXPAND),
+                    (wx.Button(self, label='*'), 0, wx.EXPAND),
+                    (wx.Button(self, label='4'), 0, wx.EXPAND),
+                    (wx.Button(self, label='5'), 0, wx.EXPAND),
+                    (wx.Button(self, label='6'), 0, wx.EXPAND),
+                    (wx.Button(self, label='-'), 0, wx.EXPAND),
+                    (wx.Button(self, label='1'), 0, wx.EXPAND),
+                    (wx.Button(self, label='2'), 0, wx.EXPAND),
+                    (wx.Button(self, label='3'), 0, wx.EXPAND),
+                    (wx.Button(self, label='+'), 0, wx.EXPAND),
+                    (wx.Button(self, label='0'), 0, wx.EXPAND),
+                    (wx.Button(self, label='Back'), 0, wx.EXPAND),
+                    (wx.Button(self, label='.'), 0, wx.EXPAND),
+                    (wx.Button(self, label='='), 0, wx.EXPAND)])
+
+        vbox.Add(gs, proportion=4, flag=wx.EXPAND | wx.BOTTOM | wx.LEFT | wx.RIGHT, border=20)
+        self.SetAutoLayout(True)
+        self.SetSizer(vbox)
+
+
+if __name__ == '__main__':
+    app = wx.App()
+    Example(None, title='Calculator')
+    wx.lib.inspection.InspectionTool().Show()
+    app.MainLoop()
